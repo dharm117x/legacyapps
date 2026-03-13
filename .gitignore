@@ -1,0 +1,46 @@
+# Maven build output
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+
+# IntelliJ IDEA / Eclipse / VS Code project files
+*.iml
+.idea/
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+.vscode/
+.metadata/
+
+# Prevent nested git repos
+frontend/.git/
+
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Spring Boot specific
+application-*.yml
+application-*.properties
+!application.properties   # keep default config if needed
+
+# Angular / Node frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.env
+frontend/.npmrc
+
+# Coverage / test reports
+coverage/
+*.lcov

@@ -1,0 +1,10 @@
+<module rename-to="app">
+  <inherits name="com.google.gwt.user.User"/>
+  <inherits name="com.google.gwt.user.theme.clean.Clean"/>
+  <inherits name="com.google.gwt.resources.Resources"/>
+  
+  <source path='client'/>
+  
+  <entry-point class="com.example.client.App"/>
+
+</module>
