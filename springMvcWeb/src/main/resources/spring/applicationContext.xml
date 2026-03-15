@@ -25,7 +25,8 @@
     <!-- Correct way to load from src/main/resources -->
 	<context:property-placeholder location="classpath:application.properties" />
     
-	<bean id="basicDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+	<!-- 3. Example Data Source (HikariCP is recommended for Java 8) -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 	    <!-- Connection settings -->
 	    <property name="driverClassName" value="${db.driver}" />
 	    <property name="url" value="${db.url}" />
@@ -39,14 +40,6 @@
 	    <property name="minIdle" value="5" />           <!-- Min idle connections to keep -->
 	    <property name="maxWaitMillis" value="10000" /> <!-- Timeout for a connection (10s) -->
 	</bean>
-
-    <!-- 3. Example Data Source (HikariCP is recommended for Java 8) -->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${db.driver}" />
-        <property name="url" value="${db.url}" />
-        <property name="username" value="${db.username}" />
-        <property name="password" value="${db.password}" />
-    </bean>
 
     <!-- 4. Transaction Manager -->
     <bean id="transactionManager" 

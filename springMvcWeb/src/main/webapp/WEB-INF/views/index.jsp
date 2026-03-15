@@ -14,5 +14,6 @@
 </head>
 <body>
 	<h1><spring:message code="welcome.message" /></h1>
+	<a href="<c:url value='users' />">Got Users</a>
 </body>
 </html>
