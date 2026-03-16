@@ -1,0 +1,172 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>wicketSpringApp</artifactId>
+  <version>1.0</version>
+  <packaging>war</packaging>
+	<properties>
+		<wicket.version>8.16.0</wicket.version>
+        <!-- Spring 4.3.x is the default compatible version for Wicket 8 -->
+		<spring.version>4.3.30.RELEASE</spring.version>
+		<log4j.version>2.20.0</log4j.version>
+		<!-- Stable version compatible with Log4j 2.20.0 -->
+		<slf4j.version>1.7.36</slf4j.version>
+		<!-- Last major version withsolid Java 8 support -->
+		<flyway.version>8.5.13</flyway.version>
+	</properties>
+
+	<dependencies>
+	    <!-- Apache Wicket Core -->
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-core</artifactId>
+            <version>${wicket.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-spring</artifactId>
+            <version>${wicket.version}</version>
+        </dependency>
+
+        <!--Spring framework-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Log4j 2 Dependencies -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- SLF4J API: The facade you use in your code -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<!-- Bridges SLF4J (used by many libs) to Log4j2 -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- Flyway for Database Migrations -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>${flyway.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.200</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>3.12.4</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.2</version>
+				<configuration>
+					<!-- Ensure it doesn't fail if web.xml is missing (common in
+					Spring Boot) -->
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			<!-- Jetty Plugin -->
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.4.53.v20231009</version>
+				<configuration>
+					<!-- Scans every 2 seconds. Set to 0 to disable. -->
+					<scanIntervalSeconds>2</scanIntervalSeconds>
+					<!-- Add these to stop the duplicate scanning warnings -->
+					<webApp>
+						<contextPath>/</contextPath>
+					</webApp>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

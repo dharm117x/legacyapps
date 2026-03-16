@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Wicket Application</title>
+</head>
+<body>
+    <!-- Header Panel -->
+    <header class="header-container" wicket:id="headerPanel">
+        <!-- Panel content renders here -->
+    </header>
+
+    <!-- Navigation Sidebar -->
+    <nav class="sidebar" wicket:id="menuPanel">
+        <!-- Menu content with dummy links renders here -->
+    </nav>
+
+    <!-- Content Area -->
+    <main class="main-content">
+        <div class="card">
+            <wicket:child /> 
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer wicket:id="footerPanel">
+        © 2026 My Wicket App
+    </footer>
+</body>
+</html>
