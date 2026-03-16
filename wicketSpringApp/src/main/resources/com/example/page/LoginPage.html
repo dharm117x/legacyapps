@@ -1,10 +1,13 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
-    <div class="login-form">
-        <h2>Please Sign In</h2>
+   <div class="login-container">
+        <!-- This is where the "Login Failed" message will appear -->
+        <div wicket:id="feedback" class="error-messages"></div>
+
         <form wicket:id="loginForm">
-             <input type="text" wicket:id="username" placeholder="Username" />
-             <input type="password" wicket:id="password" placeholder="Password" />
-             <button type="submit">Login</button>
+            <h2>Sign In</h2>
+            <input type="text" wicket:id="username" placeholder="Username" />
+            <input type="password" wicket:id="password" placeholder="Password" />
+            <button type="submit">Login</button>
         </form>
     </div>
 </wicket:extend>

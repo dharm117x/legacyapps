@@ -1,8 +1,10 @@
 package com.example.panel;
 
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.link.StatelessLink;
 import org.apache.wicket.markup.html.panel.Panel;
 
+import com.example.config.AppSession;
 import com.example.page.HomePage;
 import com.example.page.LoginPage;
 
@@ -25,6 +27,22 @@ public class MenuPanel extends Panel {
             @Override
             public void onClick() {
                 setResponsePage(LoginPage.class);
+            }
+        });
+        
+        // Logout Link
+        add(new Link<Void>("logoutLink") {
+            @Override
+            public void onClick() {
+                getSession().invalidate(); // Destroy session
+                setResponsePage(LoginPage.class);
+            }
+
+            @Override
+            protected void onConfigure() {
+                super.onConfigure();
+                // ONLY show this link if the user is signed in
+                setVisible(((AppSession) getSession()).isSignedIn());
             }
         });
     }

@@ -1,9 +1,13 @@
 package com.example;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.Session;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.request.Request;
+import org.apache.wicket.request.Response;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 
+import com.example.config.AppSession;
 import com.example.page.HomePage;
 import com.example.page.LoginPage;
 
@@ -24,4 +28,8 @@ public class StartUpApplcation extends WebApplication {
 	    mountPage("/home", HomePage.class);
 	}
 
+	@Override
+	public Session newSession(Request request, Response response) {
+	    return new AppSession(request);
+	}
 }
