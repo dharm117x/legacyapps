@@ -1,10 +1,15 @@
 <module rename-to="app">
-  <inherits name="com.google.gwt.user.User"/>
-  <inherits name="com.google.gwt.user.theme.clean.Clean"/>
-  <inherits name="com.google.gwt.resources.Resources"/>
-  
-  <source path='client'/>
-  
-  <entry-point class="com.example.client.App"/>
+	<inherits name="com.google.gwt.user.User" />
+	<inherits name="com.google.gwt.user.theme.clean.Clean" />
+	<inherits name="com.google.gwt.resources.Resources" />
+
+	<source path='client' />
+	<source path='shared' />
+
+	<inherits name='com.sencha.gxt.ui.GXT' />
+	<!-- Optional: Reset CSS for GXT -->
+	<stylesheet src="reset.css" />
+
+	<entry-point class="com.example.client.AppEntryPoint" />
 
 </module>
