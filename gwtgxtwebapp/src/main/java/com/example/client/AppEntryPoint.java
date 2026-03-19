@@ -1,0 +1,22 @@
+package com.example.client;
+
+import com.example.client.presenter.HelloPresenter;
+import com.example.client.presenter.user.UserPresenter;
+import com.example.client.view.user.UserViewImpl;
+import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.ui.RootPanel;
+
+public class AppEntryPoint implements EntryPoint {
+
+    public void onModuleLoad() {
+
+        HelloPresenter presenter = new HelloPresenter();
+        presenter.go();
+        UserViewImpl view = new UserViewImpl();
+        new UserPresenter(view);
+
+        // 🔥 THIS LINE IS MISSING IN MOST CASES
+        RootPanel.get().add(view.asWidget());
+
+    }
+}
