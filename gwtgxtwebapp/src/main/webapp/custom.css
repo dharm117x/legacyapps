@@ -1,0 +1,32 @@
+/** Add css rules here for your application. */
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #777777;
+  margin: 40px 0px 70px;
+  text-align: center;
+}
+/* Container */
+.gwt-DialogBox {
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    padding: 5px;
+}
+
+/* The Draggable Header */
+.gwt-DialogBox .Caption {
+    background: #3f51b5;
+    color: white;
+    padding: 8px;
+    font-weight: bold;
+    cursor: move;
+}
+
+/* Input Styling */
+.gwt-TextBox {
+    width: 250px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+

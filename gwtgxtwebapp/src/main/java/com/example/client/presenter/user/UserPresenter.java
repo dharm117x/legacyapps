@@ -1,11 +1,15 @@
 package com.example.client.presenter.user;
 
 import java.util.List;
+
+import com.example.client.components.UserEditDialog;
 import com.example.client.view.user.UserViewImpl;
 import com.example.shared.model.user.UserService;
 import com.example.shared.model.user.UserServiceAsync;
 import com.example.shared.model.user.UserTO;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.sencha.gxt.widget.core.client.event.SelectEvent;
@@ -48,10 +52,12 @@ public class UserPresenter {
 				service.searchUsers(filter, new AsyncCallback<List<UserTO>>() {
 					@Override
 					public void onSuccess(List<UserTO> result) {
-						view.getGrid().setData(result); 
+						view.getGrid().setData(result);
 					}
+
 					@Override
-					public void onFailure(Throwable caught) { /* handle error */ }
+					public void onFailure(Throwable caught) {
+						/* handle error */ }
 				});
 			}
 		});
@@ -69,16 +75,57 @@ public class UserPresenter {
 		view.getToolBar().getAddButton().addSelectHandler(new SelectHandler() {
 			@Override
 			public void onSelect(SelectEvent event) {
-				UserTO newUser = new UserTO(0, "New User", "user@example.com");
-				service.saveUser(newUser, new AsyncCallback<String>() {
+				final UserEditDialog dialog = new UserEditDialog("Add New User");
+				dialog.center();
+				dialog.getSaveButton().addClickHandler(new ClickHandler() {
 					@Override
-					public void onSuccess(String result) {
-						loadUsers(); // Refresh grid from DB
+					public void onClick(ClickEvent event) {
+						UserTO newUser = new UserTO(0, dialog.getNameValue(), dialog.getEmailValue());
+						service.saveUser(newUser, new AsyncCallback<String>() {
+							@Override
+							public void onSuccess(String result) {
+								loadUsers(); // Refresh grid from DB
+								dialog.hide();
+								Window.alert("User added with ID: " + result);
+							}
+
+							@Override
+							public void onFailure(Throwable caught) {
+								Window.alert("Save Failed");
+							}
+						});
 					}
+
+				});
+			}
+		});
+		
+		// ADD: Saves to server, then reloads
+		view.getToolBar().getEditButton().addSelectHandler(new SelectHandler() {
+			@Override
+			public void onSelect(SelectEvent event) {
+				final UserTO selected = view.getGrid().getSelected();
+				final UserEditDialog dialog = new UserEditDialog("Edit User");
+				dialog.editUser(selected.getName(), selected.getEmail());
+				dialog.center();
+				dialog.getSaveButton().addClickHandler(new ClickHandler() {
 					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert("Save Failed");
+					public void onClick(ClickEvent event) {
+						final UserTO updatedUser = new UserTO(selected.getId(), dialog.getNameValue(), dialog.getEmailValue());
+						service.saveUser(updatedUser, new AsyncCallback<String>() {
+							@Override
+							public void onSuccess(String result) {
+								loadUsers(); // Refresh grid from DB
+								dialog.hide();
+							}
+
+							@Override
+							public void onFailure(Throwable caught) {
+								Window.alert("Save Failed");
+							}
+						});
 					}
+
 				});
 			}
 		});
@@ -94,6 +141,7 @@ public class UserPresenter {
 						public void onSuccess(Void result) {
 							loadUsers(); // Refresh grid from DB
 						}
+
 						@Override
 						public void onFailure(Throwable caught) {
 							Window.alert("Delete Failed");

@@ -20,6 +20,11 @@ public class UserServiceImpl extends RemoteServiceServlet  implements UserServic
      
 	@Override
 	public String saveUser(UserTO user) {
+		if (user.getId() == null) {
+			user.setId(users.size() + 1); // Simple ID generation
+		} else {
+			users.removeIf(u -> u.getId().equals(user.getId()));
+		}
 		users.add(user);
 		return "User " + user.getName() + " with email " + user.getEmail() + " saved successfully!";
 	}
