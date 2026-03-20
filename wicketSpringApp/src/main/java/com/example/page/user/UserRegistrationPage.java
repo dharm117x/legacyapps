@@ -8,6 +8,7 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.wicketstuff.annotation.mount.MountPath;
 
 import com.example.config.AppSession;
 import com.example.model.User;
@@ -16,6 +17,7 @@ import com.example.page.LoginPage;
 import com.example.page.TemplatePage;
 import com.example.service.UserService;
 
+@MountPath("/register")
 public class UserRegistrationPage extends TemplatePage {
 	private static final long serialVersionUID = 1L;
 
