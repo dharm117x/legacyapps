@@ -1,0 +1,36 @@
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+    <div class="container d-flex justify-content-center align-items-center my-5">
+        <div class="card shadow-sm" style="width: 100%; max-width: 500px;">
+            <div class="card-body p-4">
+                <h2 class="card-title text-center mb-4">Create Account</h2>
+
+                <div wicket:id="feedback" class="alert alert-danger py-2 mb-3"></div>
+
+                <form wicket:id="registerForm">
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" wicket:id="name" class="form-control" placeholder="John Doe" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email Address</label>
+                        <input type="text" wicket:id="email" class="form-control" placeholder="name@example.com" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" wicket:id="password" class="form-control" required />
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                         <button type="submit" wicket:id="submit" class="btn btn-success">Register</button>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <small>Already have an account? <a wicket:id="loginLink" class="text-primary">Sign In</a></small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</wicket:extend>

@@ -20,8 +20,14 @@ public class LoginPage extends TemplatePage {
     private String password;
 
     public LoginPage() {
-    	// 1. Add the feedback panel to the page
-    	add(new FeedbackPanel("feedback"));
+    	FeedbackPanel feedback = new FeedbackPanel("feedback") {
+		    @Override
+		    protected void onConfigure() {
+		        super.onConfigure();
+		        setVisible(anyMessage());
+		    }
+		};
+        add(feedback);
     }
 
     @Override

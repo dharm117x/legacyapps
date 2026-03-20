@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.WebPage;
 
 import com.example.config.AppSession;
 import com.example.config.MenuItem;
+import com.example.page.user.UserRegistrationPage;
 import com.example.panel.BreadcrumbPanel;
 import com.example.panel.FooterPanel;
 import com.example.panel.HeaderPanel;
@@ -33,8 +34,9 @@ public class TemplatePage extends WebPage {
 	    super.onConfigure();
 	    setStatelessHint(false);
 	    AppSession session = (AppSession) getSession();
-	    // If not signed in AND we aren't already on the LoginPage
-	    if (!session.isSignedIn() && !getClass().equals(LoginPage.class)) {
+	    boolean isPublicPage = getClass().equals(LoginPage.class) || 
+                getClass().equals(UserRegistrationPage.class);
+	    if (!session.isSignedIn() && !isPublicPage) {
 	        throw new RestartResponseAtInterceptPageException(LoginPage.class);
 	    }
 	}

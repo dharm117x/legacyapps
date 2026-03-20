@@ -11,6 +11,7 @@ import com.example.config.AppSession;
 import com.example.page.HomePage;
 import com.example.page.LoginPage;
 import com.example.page.user.UserPage;
+import com.example.page.user.UserRegistrationPage;
 
 
 public class StartUpApplcation extends WebApplication {
@@ -26,7 +27,8 @@ public class StartUpApplcation extends WebApplication {
 	    // Connects Wicket components to Spring beans (@SpringBean)
 	    getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 	    mountPage("/login", LoginPage.class);
-	    mountPage("/home", HomePage.class);
+	    mountPage("/regiser", UserRegistrationPage.class);
+		mountPage("/home", HomePage.class);
 	    mountPage("/user", UserPage.class);
 	    
 	}
