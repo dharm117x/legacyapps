@@ -10,6 +10,7 @@ import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import com.example.config.AppSession;
 import com.example.page.HomePage;
 import com.example.page.LoginPage;
+import com.example.page.user.UserPage;
 
 
 public class StartUpApplcation extends WebApplication {
@@ -26,6 +27,8 @@ public class StartUpApplcation extends WebApplication {
 	    getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 	    mountPage("/login", LoginPage.class);
 	    mountPage("/home", HomePage.class);
+	    mountPage("/user", UserPage.class);
+	    
 	}
 
 	@Override

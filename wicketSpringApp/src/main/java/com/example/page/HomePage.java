@@ -3,6 +3,7 @@ package com.example.page;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import com.example.config.MenuItem;
 import com.example.service.UserService;
 
 public class HomePage extends TemplatePage {
@@ -12,12 +13,13 @@ public class HomePage extends TemplatePage {
     private UserService userService;
 
     public HomePage() {
+    	crumbs.add(new MenuItem("Home", HomePage.class));
         add(new Label("message", "Welcome to the Wicket 8 + Spring 4 Dashboard!"));
     }
     
     @Override
     protected void onInitialize() {
         super.onInitialize();
-        add(new Label("userCount", userService.getCount())); 
+        add(new Label("userCount", userService.getAll().size() + " users registered")); 
     }
 }

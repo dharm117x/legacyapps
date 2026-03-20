@@ -1,13 +1,28 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
-   <div class="login-container">
-        <!-- This is where the "Login Failed" message will appear -->
-        <div wicket:id="feedback" class="error-messages"></div>
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+        <div class="card shadow-sm" style="width: 100%; max-width: 400px;">
+            <div class="card-body p-4">
+                <h2 class="card-title text-center mb-4">Sign In</h2>
 
-        <form wicket:id="loginForm">
-            <h2>Sign In</h2>
-            <input type="text" wicket:id="username" placeholder="Username" />
-            <input type="password" wicket:id="password" placeholder="Password" />
-            <button type="submit">Login</button>
-        </form>
+                <!-- Bootstrap Alert for feedback messages -->
+                <div wicket:id="feedback" class="alert alert-danger py-2 mb-3"></div>
+
+                <form wicket:id="loginForm">
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" wicket:id="username" class="form-control" placeholder="Enter username" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" wicket:id="password" class="form-control" placeholder="Enter password" required />
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary mt-2">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </wicket:extend>

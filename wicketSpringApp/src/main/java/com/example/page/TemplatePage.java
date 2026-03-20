@@ -1,16 +1,18 @@
 package com.example.page;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.wicket.Component;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
-import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.request.resource.PackageResourceReference;
 
 import com.example.config.AppSession;
+import com.example.config.MenuItem;
+import com.example.panel.BreadcrumbPanel;
 import com.example.panel.FooterPanel;
 import com.example.panel.HeaderPanel;
-import com.example.panel.MenuPanel;
 
 public class TemplatePage extends WebPage {
 
@@ -18,10 +20,11 @@ public class TemplatePage extends WebPage {
 	private Component headerPanel;
 	private Component menuPanel;
 	private Component footerPanel;
-
+	protected List<MenuItem> crumbs = new ArrayList<MenuItem>();
+	
 	public TemplatePage() {
+		add(new BreadcrumbPanel("breadcrumb", crumbs));   
 		add(headerPanel = new HeaderPanel("headerPanel"));
-		add(menuPanel = new MenuPanel("menuPanel"));
 		add(footerPanel = new FooterPanel("footerPanel"));
 	}
 
@@ -40,7 +43,6 @@ public class TemplatePage extends WebPage {
     @Override
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
-        response.render(CssHeaderItem.forReference(new PackageResourceReference(getClass(), "style.css")));
     }
     
 	public Component getHeaderPanel() {

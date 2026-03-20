@@ -1,10 +1,25 @@
 <wicket:panel>
-    <div class="header-content">
-        <div class="header-right">
-            <span class="user-info">
-                User: <strong wicket:id="username">User</strong>
-            </span>
-            <span class="date-info" wicket:id="currentDate">01/01/2026</span>
+    <nav class="navbar navbar-expand navbar-light bg-light" wicket:id="menu">
+        <div class="container-fluid">
+            <!-- d-flex flex-row ensures it stays horizontal -->
+            <ul class="navbar-nav d-flex flex-row" wicket:id="menuItems">
+                <li class="nav-item me-3">
+                    <a class="nav-link" wicket:id="link">
+                        <span wicket:id="label"></span>
+                    </a>
+                </li>
+            </ul>
+             <ul class="navbar-nav ms-auto">
+				<li class="nav-item">
+					<span class="nav-link" wicket:id="currentDate">01/01/2026</span>
+				</li>
+				<li class="nav-item">
+				  <span class="nav-link" wicket:id="username">User</span>
+				</li>
+				<li class="nav-item">
+                    <a wicket:id="logout" class="nav-link">Logout</a>
+                </li>
+             </ul>
         </div>
-    </div>
+    </nav>
 </wicket:panel>

@@ -3,29 +3,46 @@
 <head>
     <meta charset="utf-8" />
     <title>Wicket Application</title>
-    <link rel="stylesheet" type="text/css" href="static/css/app.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css" />
+    <style>
+        /* Add padding so content doesn't hide under the fixed bars */
+        body {
+            padding-top: 70px;    /* Height of your header */
+            padding-bottom: 60px; /* Height of your footer */
+            background-color: #f8f9fa;
+        }
+        
+        .footer-container {
+            height: 50px;
+            line-height: 50px; /* Vertically centers text */
+            background-color: #ffffff;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header Panel -->
-    <header class="header-container" wicket:id="headerPanel">
-        <!-- Panel content renders here -->
+    <!-- Header Fixed at Top -->
+    <header class="fixed-top shadow-sm" wicket:id="headerPanel">
+        <!-- Ensure your HeaderPanel HTML uses <nav class="navbar..."> -->
     </header>
+    
+     <!-- Breadcrumb placeholder -->
+    <div wicket:id="breadcrumb"></div>
 
-    <!-- Navigation Sidebar -->
-    <nav class="sidebar" wicket:id="menuPanel">
-        <!-- Menu content with dummy links renders here -->
-    </nav>
-
-    <!-- Content Area -->
-    <main class="main-content">
-        <div class="card">
-            <wicket:child /> 
+    <!-- Content Area (Scrollable) -->
+    <main class="container my-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <wicket:child /> 
+            </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer wicket:id="footerPanel">
-        © 2026 My Wicket App
+    <!-- Footer Fixed at Bottom -->
+    <footer class="fixed-bottom footer-container text-center" wicket:id="footerPanel">
+        <div class="container text-muted">
+            © 2026 My Wicket App
+        </div>
     </footer>
 </body>
 </html>
