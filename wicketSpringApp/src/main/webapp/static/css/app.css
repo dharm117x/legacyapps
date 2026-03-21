@@ -24,6 +24,31 @@
     margin-bottom: 0;
 }
 
+.pagination {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.pagination .page-item {
+    margin: 0 5px;
+}
+
+.pagination .page-link {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    color: #007bff;
+}
+
+/* Style for the current active page number */
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+
 /* Login Form Container */
 .login-container {
     max-width: 400px;

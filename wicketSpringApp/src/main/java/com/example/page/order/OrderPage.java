@@ -21,12 +21,10 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.annotation.mount.MountPath;
 
-import com.example.config.MenuItem;
 import com.example.model.Order;
-import com.example.page.HomePage;
 import com.example.page.TemplatePage;
-import com.example.page.user.UserPage;
 import com.example.panel.DialogPanel;
+import com.example.panel.PagingPanel;
 import com.example.panel.order.OrderEditPanel;
 import com.example.service.OrderService;
 
@@ -109,7 +107,7 @@ public class OrderPage extends TemplatePage {
 			}
 		};
 		tableContainer.add(dataView);
-		tableContainer.add(new AjaxPagingNavigator("navigator", dataView));
+		tableContainer.add(new PagingPanel("navigator", dataView));
 
 		// 6. Add New Button
 		add(new AjaxLink<Void>("addNew") {

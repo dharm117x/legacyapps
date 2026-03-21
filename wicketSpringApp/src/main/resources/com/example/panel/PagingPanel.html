@@ -1,0 +1,15 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org">
+    <ul class="pagination">
+        <li class="page-item"><a wicket:id="first" class="page-link">Last&lt;&lt;</a></li>
+        <li class="page-item"><a wicket:id="prev" class="page-link">Prev&lt;</a></li>
+        
+        <li wicket:id="navigation" class="page-item">
+            <a wicket:id="pageLink" class="page-link">
+                <span wicket:id="pageNumber">1</span>
+            </a>
+        </li>
+        
+        <li class="page-item"><a wicket:id="next" class="page-link">&gt;Next</a></li>
+        <li class="page-item"><a wicket:id="last" class="page-link">&gt;&gt;Last</a></li>
+    </ul>
+</wicket:panel>
