@@ -21,8 +21,11 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.annotation.mount.MountPath;
 
+import com.example.config.MenuItem;
 import com.example.model.Order;
+import com.example.page.HomePage;
 import com.example.page.TemplatePage;
+import com.example.page.user.UserPage;
 import com.example.panel.DialogPanel;
 import com.example.panel.order.OrderEditPanel;
 import com.example.service.OrderService;
@@ -39,7 +42,6 @@ public class OrderPage extends TemplatePage {
 	private final WebMarkupContainer tableContainer;
 
 	public OrderPage() {
-		// 1. Setup Modal
 		final DialogPanel modal = new DialogPanel("modal");
 		modal.add(new DefaultTheme());
 		add(modal);
@@ -92,9 +94,16 @@ public class OrderPage extends TemplatePage {
 						modal.open(new OrderEditPanel(DialogPanel.CONTENT_ID, item.getModel()) {
 							@Override
 							protected void onSave(AjaxRequestTarget target) {
-								target.add(tableContainer); // Refresh list after edit
+								target.add(tableContainer);
 							}
 						}, target);
+					}
+				});
+				item.add(new AjaxLink<Void>("delete") {
+					@Override
+					public void onClick(AjaxRequestTarget target) {
+						service.delete(item.getModelObject().getId());
+						target.add(tableContainer); // Refresh list after delete
 					}
 				});
 			}

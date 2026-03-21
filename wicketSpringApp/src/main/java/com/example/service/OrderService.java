@@ -18,13 +18,16 @@ public class OrderService {
 	public void save(Order modelObject) {
 		if (modelObject.getId() == null) {
 			modelObject.setId(orders.size() + 1L); // Simple ID generation);
-			orders.add(modelObject);
 		} else {
 			orders.removeIf(o -> o.getId().equals(modelObject.getId())); // Remove existing order with same ID
 		}
 		orders.add(modelObject); // Add the new/updated order
 	}
 
+	public void delete(Long id) {
+        orders.removeIf(o -> o.getId().equals(id));
+    }
+	
 	/**
 	 * Logic for Filtering and Pagination.
 	 */

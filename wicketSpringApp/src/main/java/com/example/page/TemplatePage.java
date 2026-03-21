@@ -9,6 +9,7 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.PropertyModel;
 
 import com.example.config.AppSession;
 import com.example.config.MenuItem;
@@ -27,7 +28,7 @@ public abstract class TemplatePage extends WebPage {
 
 	public TemplatePage() {
 		add(new Label("title", getTitle()));
-		add(new BreadcrumbPanel("breadcrumb", crumbs));
+	    add(new BreadcrumbPanel("breadcrumb", new PropertyModel<>(this, "crumbs")));
 		add(headerPanel = new HeaderPanel("headerPanel"));
 		add(footerPanel = new FooterPanel("footerPanel"));
 	}
@@ -48,6 +49,23 @@ public abstract class TemplatePage extends WebPage {
 		super.renderHead(response);
 	}
 
+	@Override
+	protected void onBeforeRender() {
+		super.onBeforeRender();
+		crumbs.clear();
+		crumbs.add(new MenuItem("Home", HomePage.class));
+	    IModel<?> titleModel = getTitle();
+	    if (titleModel != null && titleModel.getObject() != null) {
+	        String currentTitle = titleModel.getObject().toString();
+	        crumbs.add(new MenuItem(currentTitle, this.getClass())); 
+	    }
+	}
+	
+	@Override
+	protected void onAfterRender() {
+		super.onAfterRender();
+	}
+	
 	public abstract IModel<?> getTitle();
 
 
