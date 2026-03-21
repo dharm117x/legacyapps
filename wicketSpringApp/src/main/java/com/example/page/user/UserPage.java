@@ -38,4 +38,10 @@ public class UserPage extends TemplatePage {
         // List Panel
         add(new UserListPanel("listPanel", listModel, userModel, service));
     }
+
+	@Override
+	public IModel<?> getTitle() {
+		return Model.of("userPage");
+
+	}
 }

@@ -24,7 +24,7 @@ public class StartUpApplcation extends WebApplication {
 	@Override
 	protected void init() {
 	    super.init();
-	    // Connects Wicket components to Spring beans (@SpringBean)
+	    getDebugSettings().setDevelopmentUtilitiesEnabled(true);
 	    getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 	    new AnnotatedMountScanner().scanPackage("com.example.page").mount(this);
 	    mountPage("/login", LoginPage.class);

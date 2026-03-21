@@ -1,0 +1,44 @@
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+    <!-- 1. Search Form: IDs must match Java hierarchy -->
+    <form wicket:id="searchForm" class="form-inline mb-3">
+        <input type="text" wicket:id="searchField" class="form-control" placeholder="Search customer...">
+        
+        <!-- searchBtn MUST be inside searchForm in HTML -->
+        <button wicket:id="searchBtn" type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <!-- 2. Add Button: Added directly to the Page in Java -->
+    <div class="mb-3">
+        <button wicket:id="addNew" class="btn btn-success">Add New Order</button>
+    </div>
+
+    <!-- 3. Table Container: For AJAX refresh -->
+    <div wicket:id="tableContainer">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr wicket:id="orderList">
+                    <td><span wicket:id="id"></span></td>
+                    <td><span wicket:id="customer"></span></td>
+                     <td><span wicket:id="total"></span></td> 
+                    <td>
+                        <a href="#" wicket:id="edit" class="btn btn-sm btn-info">Edit</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 4. Pagination -->
+        <div wicket:id="navigator"></div>
+    </div>
+
+    <!-- 5. Modal Placeholder -->
+    <div wicket:id="modal"></div>
+</wicket:extend>

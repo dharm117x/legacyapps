@@ -1,0 +1,24 @@
+<wicket:panel>
+    <!-- Use "d-block" when visible=true to override Bootstrap's hidden default -->
+    <div wicket:id="window" class="modal d-block" tabindex="-1" role="dialog" style="background: rgba(0,0,0,0.5);">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <!-- The Dynamic Content (OrderEditPanel) is injected here -->
+                <div wicket:id="content"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fallback styles in case Bootstrap CSS isn't loaded -->
+    <style>
+        .modal.d-block {
+            display: block !important;
+            overflow-y: auto;
+        }
+        .modal-content {
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border: none;
+        }
+    </style>
+</wicket:panel>

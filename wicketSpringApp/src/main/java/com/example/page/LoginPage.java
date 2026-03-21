@@ -5,6 +5,8 @@ import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import com.example.config.AppSession;
@@ -63,4 +65,9 @@ public class LoginPage extends TemplatePage {
         form.add(new PasswordTextField("password").setRequired(true));
         add(form);
     }
+
+	@Override
+	public IModel<?> getTitle() {
+		return Model.of("loginPage");
+	}
 }

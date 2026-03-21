@@ -1,0 +1,23 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org">
+    <div class="modal-header">
+        <h5 class="modal-title">Order Details</h5>
+    </div>
+    
+    <form wicket:id="form">
+        <div class="modal-body">
+            <div class="mb-3">
+                <label class="form-label">Customer Name</label>
+                <input type="text" wicket:id="customer" class="form-control" placeholder="Enter customer name" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Total Amount</label>
+                <input type="number" wicket:id="total" class="form-control" step="0.01" />
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <button type="submit" wicket:id="save" class="btn btn-primary">Save Order</button>
+            <button type="button" wicket:id="cancel" class="btn btn-secondary">Close</button>
+        </div>
+    </form>
+</wicket:panel>
